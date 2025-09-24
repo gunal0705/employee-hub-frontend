@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { EmployeeNewComponent } from './employee-new/employee-new.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material.module';
 @NgModule({
   declarations: [
     EmployeeNewComponent,
@@ -13,7 +13,9 @@ import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class AdminModule { }

@@ -1,1 +1,51 @@
-<p>employee-new works!</p>
+<mat-card class="employee-form-card" style="max-width: 800px; margin: 20px auto; padding: 20px;">
+    <h2 mat-card-title>Add Employee</h2>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="fullName" placeholder="Enter full name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Enter email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Department</mat-label>
+            <input matInput formControlName="department" placeholder="Enter department" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Joined On</mat-label>
+            <input matInput type="date" formControlName="joinedOn" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="Other">Other</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Age</mat-label>
+            <input matInput type="number" formControlName="age" placeholder="Enter age" />
+        </mat-form-field>
+
+        <div class="full-width" style="margin-bottom: 16px;">
+            <label for="image" style="display:block; margin-bottom: 4px; font-weight: 500;">Profile Picture</label>
+            <input id="image" type="file" (change)="onFileChange($event)" accept="image/*"
+                style="width: 100%; padding: 8px; border: 1px solid rgba(0,0,0,0.12); border-radius: 4px;" />
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button mat-raised-button color="primary" type="submit" [disabled]="employeeForm.invalid">
+                Add Employee
+            </button>
+        </div>
+    </form>
+</mat-card>

@@ -27,7 +27,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(data: LoginRequest) {
-     const encryptedData = this.encryptData(data);
+    const encryptedData = this.encryptData(data);
     return this.http.post(`${this.baseUrl}/login`, encryptedData).pipe(tap((res: any) => {
 
     }));
@@ -35,22 +35,22 @@ export class AuthService {
 
   register(data: RegisterRequest) {
     const encryptedData = this.encryptData(data);
-    return this.http.post(`${this.baseUrl}/register`, encryptedData,{ responseType: 'text' }).pipe(tap((res: any) => {
+    return this.http.post(`${this.baseUrl}/register`, encryptedData, { responseType: 'text' }).pipe(tap((res: any) => {
 
     }));
   }
 
   encryptData(data: any) {
-     const key = CryptoJS.enc.Utf8.parse(this.secretKey);
+    const key = CryptoJS.enc.Utf8.parse(this.secretKey);
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), key, {
-    mode: CryptoJS.mode.ECB,
-    padding: CryptoJS.pad.Pkcs7
-  });
-  return { data: encrypted.toString() };
-}
-googleLogin(idToken: string) {
-  return this.http.post(`${this.baseUrl}/google-login`, { token: idToken });
-}
+      mode: CryptoJS.mode.ECB,
+      padding: CryptoJS.pad.Pkcs7
+    });
+    return { data: encrypted.toString() };
+  }
+  googleLogin(idToken: string) {
+    return this.http.post(`${this.baseUrl}/google-login`, { token: idToken });
+  }
 
   setToken(token: string) {
     localStorage.setItem('auth_token', token);
@@ -60,9 +60,6 @@ googleLogin(idToken: string) {
     return localStorage.getItem('auth_token');
   }
 
-  // clearToken() {
-  //   localStorage.removeItem('auth_token');
-  // }
 
   isLoggedIn() {
     return !!this.getToken();
@@ -77,5 +74,10 @@ googleLogin(idToken: string) {
     } catch (e) {
       return false;
     }
+  }
+  addEmployee(data:any){
+       return this.http.post(`${this.baseUrl}/save-employee`, data).pipe(tap((res:any)=>{
+
+       }))
   }
 }
