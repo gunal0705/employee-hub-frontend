@@ -2,3 +2,35 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.login-container, .signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card, .signup-card {
+  width: 400px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.divider {
+  margin: 1rem 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.google-btn mat-icon {
+  margin-right: 8px;
+}
+
+.signup-link, .login-link {
+  margin-top: 1rem !important;
+}
