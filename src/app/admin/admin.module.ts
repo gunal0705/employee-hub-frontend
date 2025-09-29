@@ -3,13 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { EmployeeNewComponent } from './employee-new/employee-new.component';
-import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 @NgModule({
   declarations: [
-    EmployeeNewComponent,
-    EmployeeEditComponent
+    EmployeeNewComponent
   ],
   imports: [
     CommonModule,

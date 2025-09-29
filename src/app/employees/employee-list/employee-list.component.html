@@ -1,1 +1,36 @@
-<p>employee-list works!</p>
+<mat-card>
+  <h2>Employees</h2>
+  <button mat-raised-button color="primary" routerLink="/admin/employees/new">Add Employee</button>
+
+  <table mat-table [dataSource]="employees" class="mat-elevation-z8" style="width: 100%; margin-top: 16px;">
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.fullName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef> Department </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.department}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let emp">
+        <button mat-icon-button color="primary" (click)="editEmployee(emp.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteEmployee(emp.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['fullName','email','department','actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['fullName','email','department','actions'];"></tr>
+  </table>
+</mat-card>

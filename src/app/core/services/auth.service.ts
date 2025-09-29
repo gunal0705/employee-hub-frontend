@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
 
@@ -70,14 +70,29 @@ export class AuthService {
     if (!token) return false;
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.roles?.includes('ADMIN');
+      return payload.roles?.includes('ROLE_ADMIN');
     } catch (e) {
       return false;
     }
   }
-  addEmployee(data:any){
-       return this.http.post(`${this.baseUrl}/save-employee`, data).pipe(tap((res:any)=>{
 
-       }))
+  getAll(): Observable<any> {
+    return this.http.get(this.baseUrl+'/employees');
+  }
+
+  get(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl+'/employees'}/${id}`);
+  }
+
+  add(employee: any): Observable<any> {
+    return this.http.post(this.baseUrl+'/employees/saveEmployee', employee);
+  }
+
+  update(id: number, employee: any): Observable<any> {
+    return this.http.put(`${this.baseUrl+'/employees/updateEployee'}/${id}`, employee);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl+'/employees'}/${id}`);
   }
 }
